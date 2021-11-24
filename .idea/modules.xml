@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/C212-FinalProject.iml" filepath="$PROJECT_DIR$/C212-FinalProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/C212FinalProjectArcade.iml" filepath="$PROJECT_DIR$/.idea/C212FinalProjectArcade.iml" />
     </modules>
   </component>
 </project>
