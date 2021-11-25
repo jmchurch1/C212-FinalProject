@@ -7,9 +7,7 @@ public class Lobby extends Place{
 
     @Override
     void onEnter(User user) {
-        // print a menu using following method
-        ConsoleUtils.printMenuToConsole();
-        /* menu should
+        /*
         1) welcome user to the arcade
         2) print the user's balance
         3) asks user to select a place to go from the list
@@ -17,6 +15,10 @@ public class Lobby extends Place{
 
         then move to selected place
          */
+        System.out.print(String.format("Welcome to the lobby %s!\n==========\n", user.getUsername()));
+        System.out.print(String.format("You current balance is: %f\n==========\n", user.getBalance()));
+        Place userChosenPlace = ConsoleUtils.printMenuToConsole("Lobby Menu", arcade.getAllPlaces(), true);
+        arcade.transitionArcadeState(userChosenPlace.placeName);
     }
 
     @Override
