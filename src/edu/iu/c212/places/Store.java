@@ -10,7 +10,9 @@ package edu.iu.c212.places;
 import edu.iu.c212.models.Item;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
+import edu.iu.c212.utils.FileUtils;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +21,7 @@ import java.util.List;
 // store has a 0$ entry fee
 public class Store extends Place{
     @Override
-    void onEnter(User user) {
+    void onEnter(User user) throws IOException {
         List<String> mainMenuChoices = new ArrayList<>(Arrays.asList("Buy","Sell","Leave"));
         // loop infinitely until the user selects the leave action
         // print the menu to read a StoreAction asking whether to
@@ -29,7 +31,39 @@ public class Store extends Place{
 
             if (choiceOne.equals("Buy")) {
                 while (true){
-
+                    // check if the user is able to buy anything at the store
+                    boolean canBuy = false;
+                    for (Item item : Item.values()){
+                        if (item.getValue() <= user.getBalance()){
+                            canBuy = true;
+                        }
+                    }
+                    if (user.getInventory().size() == 3){
+                        System.out.println("You already have three items in your inventory, you can't buy another item yet.");
+                        break;
+                    }
+                    if (!canBuy){
+                        // send the user back to the menu with three options
+                        System.out.println("With your current finances you are unable to purchase anything at the store.");
+                        break;
+                    }
+                    // the user can buy at least one thing from the store, display the store menu
+                    Item buyItem = ConsoleUtils.printMenuToConsole("Buy Menu", Arrays.asList(Item.values()), true);
+                    // ask the user if they are sure if they want to buy the item
+                    String warningMessage = String.format("Are you sure you would like to buy (%s)", buyItem.toString());
+                    List<String> confirmationChoices = new ArrayList<>(Arrays.asList("Buy", "Cancel"));
+                    String userConfirmation = ConsoleUtils.printMenuToConsole(warningMessage, confirmationChoices, true);
+                    if (userConfirmation.equals("Buy")){
+                        // remove the cost of the item from the user's balance
+                        user.setBalance(user.getBalance() - buyItem.getValue());
+                        // add the item to the user's inventory
+                        user.addItem(buyItem);
+                        // save the user information
+                        FileUtils.writeUserDataToFile(arcade.getAllUsers());
+                    }
+                    else {
+                        break;
+                    }
                 }
 
             } else if (choiceOne.equals("Sell")) {
@@ -40,19 +74,21 @@ public class Store extends Place{
                     }
                     System.out.println("WARNING: If you decide to sell anything you will only get 50% of the item's value back.");
                     List<Item> userItems = user.getInventory();
-                    Item itemChoice = ConsoleUtils.printMenuToConsole("Sell Menu", userItems, true);
+                    Item sellItem = ConsoleUtils.printMenuToConsole("Sell Menu", userItems, true);
                     List<String> confirmationChoices = new ArrayList<>(Arrays.asList("Sell","Cancel"));
-                    String warningMessage = String.format("Are you sure you want to sell %s, you will only get $%.2f", itemChoice.toString(), itemChoice.getValue()/2);
+                    String warningMessage = String.format("Are you sure you want to sell %s, you will only get $%.2f", sellItem.toString(), sellItem.getValue()/2);
                     String userConfirmation = ConsoleUtils.printMenuToConsole(warningMessage, confirmationChoices, true);
                     if (userConfirmation.equals("Sell")){
                         DecimalFormat df = new DecimalFormat();
                         df.setMaximumFractionDigits(2);
                         // makes sure there are only two decimal points
-                        double itemValue = Double.parseDouble(df.format(itemChoice.getValue()/2));
+                        double itemValue = Double.parseDouble(df.format(sellItem.getValue()/2));
+                        // remove the item from the user's inventory
+                        user.removeItem(sellItem);
                         // increase the user balance
                         user.setBalance(user.getBalance() + itemValue);
                         // save the user information
-
+                        FileUtils.writeUserDataToFile(arcade.getAllUsers());
 
                     }
                     else {

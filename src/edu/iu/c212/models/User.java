@@ -22,12 +22,12 @@ public class User {
     }
 
     // setters
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public void addItem(Item item){
+        inventory.add(item);
     }
 
     public boolean removeItem(Item item){

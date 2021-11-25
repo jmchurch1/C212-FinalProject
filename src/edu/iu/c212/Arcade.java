@@ -45,4 +45,10 @@ public class Arcade implements IArcade{
     public List<Place> getAllPlaces() {
         return null;
     }
+
+    public List<User> getAllUsers() {
+        return allUsers;
+    }
+
+
 }
