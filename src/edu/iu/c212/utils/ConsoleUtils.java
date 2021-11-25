@@ -11,6 +11,7 @@ public class ConsoleUtils {
      * This reads a line from the console using the scanner
      */
     public static String readLineFromConsole() {
+        return scanner.nextLine();
     }
 
     /**
@@ -18,7 +19,20 @@ public class ConsoleUtils {
      * If the condition returns false, or else if this is not an integer, it will print the failure message and ask the user to input again.
      */
     public static int readIntegerLineFromConsoleOrElseComplainAndRetry(Function<Integer, Boolean> condition, String failureMessage) {
+        while (true) {
+            // check if the userInput is an Integer
+            if (scanner.hasNextInt()) {
+                String userInput = readLineFromConsole();
+                return Integer.parseInt(userInput);
+            }
+            else {
+                // get rid of the current input
+                readLineFromConsole();
+                // print a message prompting user to input an Integer
+                System.out.println("Please make sure that you are inputting an integer.");
 
+            }
+        }
     }
 
     /**
