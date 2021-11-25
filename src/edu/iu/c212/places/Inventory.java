@@ -35,6 +35,8 @@ public class Inventory extends Place{
         for (Map.Entry<Item, Integer> entry : itemHashMap.entrySet()) {
             System.out.print(String.format("%s: %d (value: %f)\n",entry.getKey(),entry.getKey(),entry.getKey().getValue()));
         }
+        // not sure if net worth should include the item values or not
+        System.out.print(String.format("Total net worth: %f", user.getBalance()));
         System.out.print("REMEMBER! You can only have 3 items at a time. Sell one by going to the Store\n==========\n");
     }
 
