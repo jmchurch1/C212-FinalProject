@@ -59,7 +59,7 @@ public class Store extends Place{
                         // add the item to the user's inventory
                         user.addItem(buyItem);
                         // save the user information
-                        FileUtils.writeUserDataToFile(arcade.getAllUsers());
+                        arcade.saveUsersToFile();
                         break;
                     }
                     else {
@@ -89,7 +89,7 @@ public class Store extends Place{
                         // increase the user balance
                         user.setBalance(user.getBalance() + itemValue);
                         // save the user information
-                        FileUtils.writeUserDataToFile(arcade.getAllUsers());
+                        arcade.saveUsersToFile();
                         break;
                     }
                     else {

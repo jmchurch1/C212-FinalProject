@@ -2,7 +2,10 @@ package edu.iu.c212;
 
 import edu.iu.c212.models.User;
 import edu.iu.c212.places.Place;
+import edu.iu.c212.utils.FileUtils;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Arcade implements IArcade{
@@ -15,20 +18,21 @@ public class Arcade implements IArcade{
     // - Lobby, Guess the number, Blackjack, Hangman, Trivia, Inventory, Store -
 
     // no argument constructor
-    public Arcade(){
-        getUserSaveDataFromFile();
+    public Arcade() throws IOException{
+        allUsers = getUserSaveDataFromFile();
         currentUser = allUsers.get(0);
         transitionArcadeState("Lobby");
     }
 
     @Override
-    public List<User> getUserSaveDataFromFile() {
-        return null;
+    public List<User> getUserSaveDataFromFile() throws IOException {
+        List<User> userList = FileUtils.getUserDataFromFile();
+        return userList;
     }
 
     @Override
-    public void saveUsersToFile() {
-
+    public void saveUsersToFile() throws IOException{
+        FileUtils.writeUserDataToFile(allUsers);
     }
 
     @Override

@@ -3,17 +3,18 @@ package edu.iu.c212;
 import edu.iu.c212.models.User;
 import edu.iu.c212.places.Place;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IArcade {
 
     // call FileUtils.getUserDataFromFile, and use System.exit
     // to exit the program if an exception is thrown
-    List<User> getUserSaveDataFromFile();
+    List<User> getUserSaveDataFromFile() throws IOException;
 
     // call FileUtils.writeUserDataToFile to write all users to
     // the .txt file
-    void saveUsersToFile();
+    void saveUsersToFile() throws IOException;
 
     // transition the currentUser to a new place
     // conditions: if the user doesn't have enough money to go to
