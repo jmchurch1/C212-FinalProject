@@ -33,7 +33,7 @@ public enum Item {;
     public String getReadableName() {
         return readableName;
     }
-    
+
     public double getValue() {
         return value;
     }
