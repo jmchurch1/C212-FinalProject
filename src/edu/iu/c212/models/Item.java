@@ -17,7 +17,7 @@ public enum Item {;
     @Override
     public String toString(){
         // print out readable name and value
-        return String.format("%s, %s",readableName,value);
+        return String.format("Name: %s, Value: $%s",readableName,value);
     }
 
     // setters

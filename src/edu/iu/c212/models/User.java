@@ -30,8 +30,15 @@ public class User {
         this.balance = balance;
     }
 
-    public void setInventory(List<Item> inventory) {
-        this.inventory = inventory;
+    public boolean removeItem(Item item){
+        if (inventory.contains(item)){
+            inventory.remove(item);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     // getters
