@@ -1,6 +1,7 @@
 package edu.iu.c212;
 
 import edu.iu.c212.models.User;
+import edu.iu.c212.places.Place;
 
 import java.util.List;
 
@@ -10,13 +11,13 @@ public class Arcade implements IArcade{
     User currentUser;
     List<User> allUsers;
     // read by getUserSaveDataFromFile() - should contain current user -
-    List<Places> allPlaces;
+    List<Place> allPlaces;
     // - Lobby, Guess the number, Blackjack, Hangman, Trivia, Inventory, Store -
 
     // no argument constructor
     public Arcade(){
         getUserSaveDataFromFile();
-        currentUser = allUsers.get(i);
+        currentUser = allUsers.get(0);
         transitionArcadeState("Lobby");
     }
 
