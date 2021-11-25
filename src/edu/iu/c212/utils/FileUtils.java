@@ -6,12 +6,14 @@ import edu.iu.c212.models.User;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class FileUtils {
     private static File file = new File("UserData/UserData.txt");
+
 
     // line format:
     // user_name|balance|item1,item2,item3
@@ -23,7 +25,28 @@ public class FileUtils {
      * @param users The total list of all users
      */
     public static void writeUserDataToFile(List<User> users) throws IOException {
+        PrintWriter out = new PrintWriter("UserData/UserData.txt");
 
+        for (User user : users){
+            // needs to be set to the readable name for my current comparison method
+            String username = user.getUsername();
+            String balance = String.valueOf(user.getBalance());
+            String items = "";
+            List<Item> userInventory = user.getInventory();
+            for (int i = 0; i < userInventory.size(); i++){
+                if (i != userInventory.size() - 1){
+                    items = items.concat(userInventory.get(i).getReadableName() + ",");
+                }
+                else
+                {
+                    items = items.concat(userInventory.get(i).getReadableName());
+                }
+            }
+
+            out.println(username+"|"+balance+"|"+items);
+        }
+
+        out.close();
     }
 
     /**
@@ -61,7 +84,7 @@ public class FileUtils {
         }
 
         sc.close();
-        
+
         return userList;
     }
 }
