@@ -18,7 +18,6 @@ public class Inventory extends Place{
         // print to the console all of the user's items, the amount
         // of each that the user has, and their value
         // initialize amounts of items at the first two indexes
-        int one, two = 0;
         HashMap<Item, Integer> itemHashMap = new HashMap<>();
         for (Item item : user.getInventory()) {
             if (itemHashMap.containsKey(item)){
@@ -37,7 +36,12 @@ public class Inventory extends Place{
         }
         // not sure if net worth should include the item values or not
         System.out.print(String.format("Total net worth: %f", user.getBalance()));
+        if (user.getInventory().size() == 3){
+            System.out.println("WARNING: Your inventory is full, you will not be able to buy any more items before you sell one");
+        }
         System.out.print("REMEMBER! You can only have 3 items at a time. Sell one by going to the Store\n==========\n");
+        // transition back to the arcade lobby
+        arcade.transitionArcadeState("Lobby");
     }
 
     @Override
