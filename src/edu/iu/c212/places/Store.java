@@ -60,6 +60,7 @@ public class Store extends Place{
                         user.addItem(buyItem);
                         // save the user information
                         FileUtils.writeUserDataToFile(arcade.getAllUsers());
+                        break;
                     }
                     else {
                         break;
@@ -89,7 +90,7 @@ public class Store extends Place{
                         user.setBalance(user.getBalance() + itemValue);
                         // save the user information
                         FileUtils.writeUserDataToFile(arcade.getAllUsers());
-
+                        break;
                     }
                     else {
                         // the user decided to not sell the item, go back to the main store menu
