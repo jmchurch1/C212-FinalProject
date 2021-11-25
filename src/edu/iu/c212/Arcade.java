@@ -2,7 +2,19 @@ package edu.iu.c212;
 
 public class Arcade implements IArcade{
 
+    // private instance variables
+    User currentUser;
+    List<User> allUsers;
+    // read by getUserSaveDataFromFile() - should contain current user -
+    List<Places> allPlaces;
+    // - Lobby, Guess the number, Blackjack, Hangman, Trivia, Inventory, Store -
 
+    // no argument constructor
+    public Arcade(){
+        getUserSaveDataFromFile();
+        currentUser = allUsers.get(i);
+        transitionArcadeState("Lobby");
+    }
 
     @Override
     public List<User> getUserSaveDataFromFile() {
