@@ -20,4 +20,21 @@ public enum Item {;
         return String.format("%s, %s",readableName,value);
     }
 
+    // setters
+    public void setReadableName(String readableName) {
+        this.readableName = readableName;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    // getters
+    public String getReadableName() {
+        return readableName;
+    }
+    
+    public double getValue() {
+        return value;
+    }
 }
