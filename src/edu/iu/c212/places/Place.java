@@ -6,9 +6,9 @@ import edu.iu.c212.models.User;
 import java.io.IOException;
 
 public abstract class Place {
-    String placeName;
+    public String placeName;
     // reference to the place's name
-    Arcade arcade;
+    public Arcade arcade;
     // reference to the arcade that the place is in
     double entryFee;
     // can be 0 for places with no entry fee (i.e. lobby)

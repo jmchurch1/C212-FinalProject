@@ -114,7 +114,7 @@ public class Arcade implements IArcade{
         placeList.add(new TriviaGame(0));
         placeList.add(new BlackjackGame(20));
         placeList.add(new HangmanGame(5));
-        placeList.add(new GuessTheNumberGame(5));
+        placeList.add(new GuessTheNumberGame(5, 10));
         // return placeList with all the different visitable areas.
         return placeList;
     }
