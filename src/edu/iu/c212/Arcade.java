@@ -21,7 +21,7 @@ public class Arcade implements IArcade{
     // no argument constructor
     public Arcade() throws IOException{
         allUsers = getUserSaveDataFromFile();
-        currentUser = allUsers.get(0);
+        currentUser = getUserOnArcadeEntry();
         transitionArcadeState("Lobby");
     }
 
@@ -42,7 +42,7 @@ public class Arcade implements IArcade{
     }
 
     @Override
-    public User getUserOnArcadeEntry() {
+    public User getUserOnArcadeEntry() throws IOException{
         Scanner sc = new Scanner(System.in);
         String username = "";
         while (true) {
@@ -62,7 +62,23 @@ public class Arcade implements IArcade{
                 return user;
         }
         // otherwise, add a new user to the UserData.txt file
-
+        double userBalance;
+        while (true){
+            System.out.println("Please enter your user's current balance. format: 00.00");
+            if (sc.hasNextDouble()){
+                userBalance = sc.nextDouble();
+                break;
+            }
+            sc.next();
+        }
+        // create new user using the given username, given balance, and no items
+        User newUser = new User(username, userBalance, new ArrayList<>());
+        // add the user to the list of users
+        allUsers.add(newUser);
+        // save the user to the file
+        FileUtils.writeUserDataToFile(allUsers);
+        // return the newUser
+        return newUser;
     }
 
     @Override

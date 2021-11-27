@@ -28,7 +28,7 @@ public interface IArcade {
     // from users.txt, a new user must be created and saved to users.txt
     // a welcome message will be printed
     // if the username exists, print a welcome back message
-    User getUserOnArcadeEntry();
+    User getUserOnArcadeEntry() throws IOException;
 
     List<Place> getAllPlaces();
     // return a list of all the places
