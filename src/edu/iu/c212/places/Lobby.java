@@ -3,11 +3,12 @@ package edu.iu.c212.places;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
 
+import java.io.IOException;
+
 public class Lobby extends Place{
 
     // instanceVariables
     private double entryFee;
-    private String placeName;
 
     public Lobby(double entryFee){
         this.entryFee = entryFee;
@@ -15,7 +16,7 @@ public class Lobby extends Place{
     }
 
     @Override
-    public void onEnter(User user) {
+    public void onEnter(User user) throws IOException {
         /*
         1) welcome user to the arcade
         2) print the user's balance
@@ -28,6 +29,10 @@ public class Lobby extends Place{
         System.out.print(String.format("You current balance is: %f\n==========\n", user.getBalance()));
         Place userChosenPlace = ConsoleUtils.printMenuToConsole("Lobby Menu", arcade.getAllPlaces(), true);
         arcade.transitionArcadeState(userChosenPlace.placeName);
+    }
+
+    public String getPlaceName() {
+        return placeName;
     }
 
     @Override

@@ -24,7 +24,6 @@ public class Store extends Place{
     // instance variables and enums
     private StoreAction storeAction;
     private double entryFee;
-    private String placeName;
 
     public Store(double entryFee){
         this.entryFee = entryFee;
@@ -113,6 +112,10 @@ public class Store extends Place{
                 break;
             }
         }
+    }
+
+    public String getPlaceName() {
+        return placeName;
     }
 
     @Override

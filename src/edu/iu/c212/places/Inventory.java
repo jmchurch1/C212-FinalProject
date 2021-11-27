@@ -3,6 +3,7 @@ package edu.iu.c212.places;
 import edu.iu.c212.models.Item;
 import edu.iu.c212.models.User;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +17,6 @@ public class Inventory extends Place{
 
     // instance variables
     private double entryFee;
-    private String placeName;
 
     public Inventory(double entryFee){
         this.entryFee = entryFee;
@@ -24,7 +24,7 @@ public class Inventory extends Place{
     }
 
     @Override
-    public void onEnter(User user) {
+    public void onEnter(User user) throws IOException {
         // print to the console all of the user's items, the amount
         // of each that the user has, and their value
         // initialize amounts of items at the first two indexes
@@ -52,6 +52,10 @@ public class Inventory extends Place{
         System.out.print("REMEMBER! You can only have 3 items at a time. Sell one by going to the Store\n==========\n");
         // transition back to the arcade lobby
         arcade.transitionArcadeState("Lobby");
+    }
+
+    public String getPlaceName() {
+        return placeName;
     }
 
     @Override

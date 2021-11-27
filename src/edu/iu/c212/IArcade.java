@@ -21,7 +21,7 @@ public interface IArcade {
     // the place, print a warning and go move player to the LOBBY
     // if the user has enough money subtract the entry fee from the player
     // save it to the file, then enter the place
-    void transitionArcadeState(String newPlaceNameToGoTo);
+    void transitionArcadeState(String newPlaceNameToGoTo) throws IOException;
 
     // ask for a username to be entered
     // if the username isn't contained in the users as read

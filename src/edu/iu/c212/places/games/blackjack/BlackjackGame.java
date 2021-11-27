@@ -8,7 +8,6 @@ public class BlackjackGame extends Game {
 
     // instance variables
     private double entryFee;
-    private String placeName;
 
     public BlackjackGame(double entryFee){
         this.entryFee = entryFee;
@@ -16,8 +15,12 @@ public class BlackjackGame extends Game {
     }
 
     @Override
-    protected void onEnter(User user) throws IOException {
+    public void onEnter(User user) throws IOException {
 
+    }
+
+    public String getPlaceName() {
+        return placeName;
     }
 
     @Override

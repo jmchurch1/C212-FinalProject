@@ -10,7 +10,6 @@ public class HangmanGame extends Game implements IHangmanGame{
 
     // instance variables
     private double entryFee;
-    private String placeName;
 
     public HangmanGame(double entryFee){
         this.entryFee = entryFee;
@@ -20,6 +19,10 @@ public class HangmanGame extends Game implements IHangmanGame{
     @Override
     public void onEnter(User user) throws IOException {
 
+    }
+
+    public String getPlaceName() {
+        return placeName;
     }
 
     @Override

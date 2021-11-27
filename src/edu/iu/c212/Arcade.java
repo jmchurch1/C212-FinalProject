@@ -45,8 +45,13 @@ public class Arcade implements IArcade{
     }
 
     @Override
-    public void transitionArcadeState(String newPlaceNameToGoTo) {
-
+    public void transitionArcadeState(String newPlaceNameToGoTo) throws IOException{
+        for (Place place : allPlaces){
+            if (place.getPlaceName().equals(newPlaceNameToGoTo)){
+                place.onEnter(currentUser);
+                break;
+            }
+        }
     }
 
     @Override

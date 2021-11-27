@@ -8,15 +8,18 @@ public class GuessTheNumberGame extends Game{
 
     // instance variables
     private double entryFee;
-    private String placeName;
 
     public GuessTheNumberGame(double entryFee){
         this.entryFee = entryFee;
         placeName = "Guess The Number Game";
     }
     @Override
-    protected void onEnter(User user) throws IOException {
+    public void onEnter(User user) throws IOException {
 
+    }
+
+    public String getPlaceName() {
+        return placeName;
     }
 
     @Override
