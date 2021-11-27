@@ -48,7 +48,7 @@ public class GuessTheNumberGame extends Game{
         guessed = false;
         randomNumber = rd.nextInt(2501);
         int guessedNumber;
-        System.out.println(String.format("Welcome %s! You have %d tries to guess a random number between 0 and 2500 (both ends inclusive)",user.getUsername(), tries));
+        System.out.printf("Welcome %s! You have %d tries to guess a random number between 0 and 2500 (both ends inclusive)\n",user.getUsername(), tries);
         while (!guessed && tries > 0){
             // rather than this while (true) loop I need to use ConsoleUtils.readIntegerLineFromConsoleOrElseComplainAndRetry(Function<Integer, Boolean> condition, String failureMessage)
             // but I don't know how Function<Integer, Boolean> works
@@ -68,14 +68,14 @@ public class GuessTheNumberGame extends Game{
             }
             if (guessedNumber > randomNumber){
                 tries--;
-                System.out.printf("Your guess was larger than the random number, you have %d tries remaining.", tries);
+                System.out.printf("Your guess was larger than the random number, you have %d tries remaining.\n", tries);
             } else if (guessedNumber < randomNumber){
                 tries--;
-                System.out.printf("Your guess was smaller than the random number, you have %d tries remaining.", tries);
+                System.out.printf("Your guess was smaller than the random number, you have %d tries remaining.\n", tries);
             } else {
                 tries--;
                 guessed = true;
-                System.out.printf("You guessed the number with %d tries remaining! You earned $%f.",tries,reward);
+                System.out.printf("You guessed the number with %d tries remaining! You earned $%f.\n",tries,reward);
             }
         }
 
@@ -87,7 +87,7 @@ public class GuessTheNumberGame extends Game{
         }
         else
         {
-            System.out.println("To bad, you were not able to guess the number this time.");
+            System.out.printf("To bad, you were not able to guess the number this time. The random number was %d\n", randomNumber);
         }
         // transition lobby state to Lobby
         arcade.transitionArcadeState("Lobby");
