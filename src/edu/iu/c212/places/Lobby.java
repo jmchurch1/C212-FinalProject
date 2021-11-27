@@ -28,7 +28,7 @@ public class Lobby extends Place{
         System.out.print(String.format("Welcome to the lobby %s!\n==========\n", user.getUsername()));
         System.out.print(String.format("You current balance is: %f\n==========\n", user.getBalance()));
         Place userChosenPlace = ConsoleUtils.printMenuToConsole("Lobby Menu", arcade.getAllPlaces(), true);
-        arcade.transitionArcadeState(userChosenPlace.placeName);
+        arcade.transitionArcadeState(userChosenPlace.getPlaceName());
     }
 
     public String getPlaceName() {

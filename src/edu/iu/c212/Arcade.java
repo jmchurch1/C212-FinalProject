@@ -122,6 +122,4 @@ public class Arcade implements IArcade{
     public List<User> getAllUsers() {
         return allUsers;
     }
-
-
 }
