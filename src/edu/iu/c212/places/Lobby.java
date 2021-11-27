@@ -5,8 +5,17 @@ import edu.iu.c212.utils.ConsoleUtils;
 
 public class Lobby extends Place{
 
+    // instanceVariables
+    private double entryFee;
+    private String placeName;
+
+    public Lobby(double entryFee){
+        this.entryFee = entryFee;
+        placeName = "Lobby";
+    }
+
     @Override
-    void onEnter(User user) {
+    public void onEnter(User user) {
         /*
         1) welcome user to the arcade
         2) print the user's balance

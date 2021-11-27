@@ -1,5 +1,7 @@
 package edu.iu.c212.places.games;
 
-public abstract class Game {
+import edu.iu.c212.places.Place;
+
+public abstract class Game extends Place{
 
 }

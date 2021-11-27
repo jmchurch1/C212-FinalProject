@@ -1,7 +1,14 @@
 package edu.iu.c212;
 
 import edu.iu.c212.models.User;
+import edu.iu.c212.places.Inventory;
+import edu.iu.c212.places.Lobby;
 import edu.iu.c212.places.Place;
+import edu.iu.c212.places.Store;
+import edu.iu.c212.places.games.GuessTheNumberGame;
+import edu.iu.c212.places.games.TriviaGame;
+import edu.iu.c212.places.games.blackjack.BlackjackGame;
+import edu.iu.c212.places.games.hangman.HangmanGame;
 import edu.iu.c212.utils.FileUtils;
 
 import java.io.IOException;
@@ -22,6 +29,7 @@ public class Arcade implements IArcade{
     public Arcade() throws IOException{
         allUsers = getUserSaveDataFromFile();
         currentUser = getUserOnArcadeEntry();
+        allPlaces = getAllPlaces();
         transitionArcadeState("Lobby");
     }
 
@@ -83,7 +91,27 @@ public class Arcade implements IArcade{
 
     @Override
     public List<Place> getAllPlaces() {
-        return null;
+        // instantiate all the places and put them in the place list
+        List<Place> placeList = new ArrayList<>();
+        /*
+        Order of additions
+        1: Lobby, $0
+        2: Inventory, $0
+        3: Store, $0
+        4: TriviaGame, $0
+        5: BlackjackGame, $20
+        6: HangmanGame, $5
+        7: GuessTheNumberGame, $5
+         */
+        placeList.add(new Lobby(0));
+        placeList.add(new Inventory(0));
+        placeList.add(new Store(0));
+        placeList.add(new TriviaGame(0));
+        placeList.add(new BlackjackGame(20));
+        placeList.add(new HangmanGame(5));
+        placeList.add(new GuessTheNumberGame(5));
+        // return placeList with all the different visitable areas.
+        return placeList;
     }
 
     public List<User> getAllUsers() {

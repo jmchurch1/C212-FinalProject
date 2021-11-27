@@ -21,9 +21,18 @@ import java.util.List;
 // store has a 0$ entry fee
 public class Store extends Place{
 
+    // instance variables and enums
     private StoreAction storeAction;
+    private double entryFee;
+    private String placeName;
+
+    public Store(double entryFee){
+        this.entryFee = entryFee;
+        placeName = "Store";
+    }
+
     @Override
-    void onEnter(User user) throws IOException {
+    public void onEnter(User user) throws IOException {
         List<StoreAction> mainMenuChoices = new ArrayList<>(Arrays.asList(StoreAction.BUY, StoreAction.SELL, StoreAction.LEAVE));
         // loop infinitely until the user selects the leave action
         // print the menu to read a StoreAction asking whether to

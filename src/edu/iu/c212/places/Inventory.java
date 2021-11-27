@@ -13,8 +13,18 @@ import java.util.Map;
 
 // entry fee $0
 public class Inventory extends Place{
+
+    // instance variables
+    private double entryFee;
+    private String placeName;
+
+    public Inventory(double entryFee){
+        this.entryFee = entryFee;
+        placeName = "Inventory";
+    }
+
     @Override
-    void onEnter(User user) {
+    public void onEnter(User user) {
         // print to the console all of the user's items, the amount
         // of each that the user has, and their value
         // initialize amounts of items at the first two indexes

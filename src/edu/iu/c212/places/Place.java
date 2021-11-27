@@ -12,7 +12,7 @@ public abstract class Place {
     // reference to the arcade that the place is in
     double entryFee;
     // can be 0 for places with no entry fee (i.e. lobby)
-    abstract void onEnter(User user) throws IOException;
+    protected abstract void onEnter(User user) throws IOException;
     // method that is invoked when the place is entered
 
     public abstract String toString();
