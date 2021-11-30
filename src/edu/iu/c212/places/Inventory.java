@@ -47,7 +47,7 @@ public class Inventory extends Place{
             System.out.print(String.format("%s: %d (value: %f)\n",entry.getKey(),entry.getKey(),entry.getKey().getValue()));
         }
         // not sure if net worth should include the item values or not
-        System.out.print(String.format("Total net worth: %f", user.getBalance()));
+        System.out.print(String.format("Total net worth: %.2f\n", user.getBalance()));
         if (user.getInventory().size() == 3){
             System.out.println("WARNING: Your inventory is full, you will not be able to buy any more items before you sell one");
         }
@@ -62,6 +62,6 @@ public class Inventory extends Place{
 
     @Override
     public String toString() {
-        return null;
+        return "Inventory";
     }
 }

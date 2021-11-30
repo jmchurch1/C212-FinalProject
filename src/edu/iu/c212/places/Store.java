@@ -122,7 +122,7 @@ public class Store extends Place{
 
     @Override
     public String toString() {
-        return null;
+        return "Store";
     }
 
     enum StoreAction {

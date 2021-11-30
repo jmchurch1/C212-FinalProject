@@ -27,6 +27,6 @@ public class TriviaGame extends Game{
 
     @Override
     public String toString() {
-        return null;
+        return "Trivia Game";
     }
 }

@@ -27,6 +27,6 @@ public class BlackjackGame extends Game {
 
     @Override
     public String toString() {
-        return null;
+        return "Blackjack Game";
     }
 }

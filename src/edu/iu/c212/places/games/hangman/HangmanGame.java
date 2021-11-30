@@ -29,7 +29,7 @@ public class HangmanGame extends Game implements IHangmanGame{
 
     @Override
     public String toString(){
-        return null;
+        return "Hangman Game";
     }
 
 }

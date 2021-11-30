@@ -101,6 +101,6 @@ public class GuessTheNumberGame extends Game{
 
     @Override
     public String toString() {
-        return null;
+        return "Guess The Number Game";
     }
 }
