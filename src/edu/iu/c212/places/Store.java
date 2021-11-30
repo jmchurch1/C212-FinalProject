@@ -64,54 +64,57 @@ public class Store extends Place{
                         Item buyItem = ConsoleUtils.printMenuToConsole("Buy Menu", Arrays.asList(Item.values()), true);
                         // ask the user if they are sure if they want to buy the item
                         String warningMessage = String.format("Are you sure you would like to buy (%s)", buyItem.toString());
-                        List<String> confirmationChoices = new ArrayList<>(Arrays.asList("Buy", "Cancel"));
-                        String userConfirmation = ConsoleUtils.printMenuToConsole(warningMessage, confirmationChoices, true);
-                        // remove the cost of the item from the user's balance
-                        user.setBalance(user.getBalance() - buyItem.getValue());
-                        // add the item to the user's inventory
-                        user.addItem(buyItem);
-                        // save the user information
-                        arcade.saveUsersToFile();
-                        break;
-                    }
-
-                    case SELL:
-                        while (true){
-                            if (user.getInventory() == null){
-                                System.out.println("Make sure you have items in your inventory before you try and sell.");
-                                break;
-                            }
-                            System.out.println("WARNING: If you decide to sell anything you will only get 50% of the item's value back.");
-                            List<Item> userItems = user.getInventory();
-                            Item sellItem = ConsoleUtils.printMenuToConsole("Sell Menu", userItems, true);
-                            List<String> confirmationChoices = new ArrayList<>(Arrays.asList("Sell","Cancel"));
-                            String warningMessage = String.format("Are you sure you want to sell %s, you will only get $%.2f", sellItem.toString(), sellItem.getValue()/2);
-                            String userConfirmation = ConsoleUtils.printMenuToConsole(warningMessage, confirmationChoices, true);
-                            if (userConfirmation.equals("Sell")){
-                                DecimalFormat df = new DecimalFormat();
-                                df.setMaximumFractionDigits(2);
-                                // makes sure there are only two decimal points
-                                double itemValue = Double.parseDouble(df.format(sellItem.getValue()/2));
-                                // remove the item from the user's inventory
-                                user.removeItem(sellItem);
-                                // increase the user balance
-                                user.setBalance(user.getBalance() + itemValue);
-                                // save the user information
-                                arcade.saveUsersToFile();
-                                break;
-                            }
-                            else {
-                                // the user decided to not sell the item, go back to the main store menu
-                                break;
-                            }
+                        List<String> buyConfirmationChoices = new ArrayList<>(Arrays.asList("Buy", "Cancel"));
+                        String userBuyConfirmation = ConsoleUtils.printMenuToConsole(warningMessage, buyConfirmationChoices, true);
+                        // if the user decided to buy the item, remove money from their balance and add the item to their inventory
+                        if (userBuyConfirmation.equals("Buy")) {
+                            // remove the cost of the item from the user's balance
+                            user.setBalance(user.getBalance() - buyItem.getValue());
+                            // add the item to the user's inventory
+                            user.addItem(buyItem);
+                            // save the user information
+                            arcade.saveUsersToFile();
                         }
-                    case LEAVE:
-                        // transition back to the lobby
-                        arcade.transitionArcadeState("Lobby");
                         break;
                     }
-            if (choiceOne == StoreAction.LEAVE){
-                break;
+                    break;
+
+                case SELL:
+                    while (true){
+                        if (user.getInventory() == null){
+                            System.out.println("Make sure you have items in your inventory before you try and sell.");
+                            break;
+                        }
+                        System.out.println("WARNING: If you decide to sell anything you will only get 50% of the item's value back.");
+                        List<Item> userItems = user.getInventory();
+                        Item sellItem = ConsoleUtils.printMenuToConsole("Sell Menu", userItems, true);
+                        List<String> sellConfirmationChoices = new ArrayList<>(Arrays.asList("Sell","Cancel"));
+                        String warningMessage = String.format("Are you sure you want to sell %s, you will only get $%.2f", sellItem.toString(), sellItem.getValue()/2);
+                        String userSellConfirmation = ConsoleUtils.printMenuToConsole(warningMessage, sellConfirmationChoices, true);
+                        if (userSellConfirmation.equals("Sell")){
+                            DecimalFormat df = new DecimalFormat();
+                            df.setMaximumFractionDigits(2);
+                            // makes sure there are only two decimal points
+                            double itemValue = Double.parseDouble(df.format(sellItem.getValue()/2));
+                            // remove the item from the user's inventory
+                            user.removeItem(sellItem);
+                            // increase the user balance
+                            user.setBalance(user.getBalance() + itemValue);
+                            // save the user information
+                            arcade.saveUsersToFile();
+                            break;
+                        }
+                        else {
+                            // the user decided to not sell the item, go back to the main store menu
+                            break;
+                        }
+                    }
+                    break;
+
+                case LEAVE:
+                    // transition back to the lobby
+                    arcade.transitionArcadeState("Lobby");
+                    break;
             }
         }
     }
