@@ -1,5 +1,6 @@
 package edu.iu.c212.places;
 
+import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
 
@@ -10,7 +11,8 @@ public class Lobby extends Place{
     // instanceVariables
     private double entryFee;
 
-    public Lobby(double entryFee){
+    public Lobby(double entryFee, Arcade arcade){
+        this.arcade = arcade;
         this.entryFee = entryFee;
         placeName = "Lobby";
     }
@@ -26,7 +28,7 @@ public class Lobby extends Place{
         then move to selected place
          */
         System.out.print(String.format("Welcome to the lobby %s!\n==========\n", user.getUsername()));
-        System.out.print(String.format("You current balance is: %f\n==========\n", user.getBalance()));
+        System.out.print(String.format("You current balance is: %.2f\n==========\n", user.getBalance()));
         Place userChosenPlace = ConsoleUtils.printMenuToConsole("Lobby Menu", arcade.getAllPlaces(), true);
         arcade.transitionArcadeState(userChosenPlace.getPlaceName());
     }

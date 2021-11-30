@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileUtils {
-    private static File file = new File("UserData/UserData.txt");
+    private static File file = new File("src/UserData/UserData.txt");
 
 
     // line format:
@@ -25,7 +25,7 @@ public class FileUtils {
      * @param users The total list of all users
      */
     public static void writeUserDataToFile(List<User> users) throws IOException {
-        PrintWriter out = new PrintWriter("UserData/UserData.txt");
+        PrintWriter out = new PrintWriter("src/UserData/UserData.txt");
 
         for (User user : users){
             // needs to be set to the readable name for my current comparison method
@@ -59,11 +59,14 @@ public class FileUtils {
         while (sc.hasNextLine()){
             // split the line into its three different parts
             // username, current balance, items
-            String[] userParts = sc.nextLine().split("|");
+            String[] userParts = sc.nextLine().split("\\|");
             // get the userName
             String username = userParts[0];
             if (username.contains("_")){
-                username = username.substring(0, username.indexOf("_")) + " " + username.substring(username.indexOf("_") + 1, username.length() - 1);
+                username = username.substring(0, username.indexOf("_") - 1) + " " + username.substring(username.indexOf("_") + 1, username.length() - 1);
+            }
+            for (String a : userParts){
+                System.out.println(a);
             }
             double userBalance = Double.parseDouble(userParts[1]);
             List<Item> userItems = new ArrayList<>();

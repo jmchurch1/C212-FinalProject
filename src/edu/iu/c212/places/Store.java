@@ -7,6 +7,7 @@ package edu.iu.c212.places;
 // selling an item will return 50% of its original value to the
 // user's balance
 
+import edu.iu.c212.Arcade;
 import edu.iu.c212.models.Item;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
@@ -25,7 +26,8 @@ public class Store extends Place{
     private StoreAction storeAction;
     private double entryFee;
 
-    public Store(double entryFee){
+    public Store(double entryFee, Arcade arcade){
+        this.arcade = arcade;
         this.entryFee = entryFee;
         placeName = "Store";
     }

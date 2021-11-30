@@ -108,13 +108,13 @@ public class Arcade implements IArcade{
         6: HangmanGame, $5
         7: GuessTheNumberGame, $5
          */
-        placeList.add(new Lobby(0));
-        placeList.add(new Inventory(0));
-        placeList.add(new Store(0));
-        placeList.add(new TriviaGame(0));
-        placeList.add(new BlackjackGame(20));
-        placeList.add(new HangmanGame(5));
-        placeList.add(new GuessTheNumberGame(5, 10));
+        placeList.add(new Lobby(0, this));
+        placeList.add(new Inventory(0, this));
+        placeList.add(new Store(0, this));
+        placeList.add(new TriviaGame(0, this));
+        placeList.add(new BlackjackGame(20, this));
+        placeList.add(new HangmanGame(5, this));
+        placeList.add(new GuessTheNumberGame(5, 10, this));
         // return placeList with all the different visitable areas.
         return placeList;
     }

@@ -1,5 +1,6 @@
 package edu.iu.c212.places.games;
 
+import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.FileUtils;
 
@@ -18,7 +19,8 @@ public class GuessTheNumberGame extends Game{
     private boolean guessed;
     private int randomNumber;
 
-    public GuessTheNumberGame(double entryFee, double reward){
+    public GuessTheNumberGame(double entryFee, double reward, Arcade arcade){
+        this.arcade = arcade;
         this.entryFee = entryFee;
         this.reward = reward;
         placeName = "Guess The Number Game";

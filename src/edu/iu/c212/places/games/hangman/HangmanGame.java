@@ -1,5 +1,6 @@
 package edu.iu.c212.places.games.hangman;
 
+import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 import edu.iu.c212.places.Place;
 import edu.iu.c212.places.games.Game;
@@ -11,7 +12,8 @@ public class HangmanGame extends Game implements IHangmanGame{
     // instance variables
     private double entryFee;
 
-    public HangmanGame(double entryFee){
+    public HangmanGame(double entryFee, Arcade arcade){
+        this.arcade = arcade;
         this.entryFee = entryFee;
         placeName = "Hangman Game";
     }

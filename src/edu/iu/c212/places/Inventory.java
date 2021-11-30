@@ -1,5 +1,6 @@
 package edu.iu.c212.places;
 
+import edu.iu.c212.Arcade;
 import edu.iu.c212.models.Item;
 import edu.iu.c212.models.User;
 
@@ -18,7 +19,8 @@ public class Inventory extends Place{
     // instance variables
     private double entryFee;
 
-    public Inventory(double entryFee){
+    public Inventory(double entryFee, Arcade arcade){
+        this.arcade = arcade;
         this.entryFee = entryFee;
         placeName = "Inventory";
     }
