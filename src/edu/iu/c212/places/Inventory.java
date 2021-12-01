@@ -44,7 +44,7 @@ public class Inventory extends Place{
         }
         System.out.print(String.format("Hi, %s! Your inventory looks like this:\n", user.getUsername()));
         for (Map.Entry<Item, Integer> entry : itemHashMap.entrySet()) {
-            System.out.print(String.format("%s: %d (value: %f)\n",entry.getKey(),entry.getKey(),entry.getKey().getValue()));
+            System.out.print(String.format("Name: %s, Amount: %d (value: $%.2f)\n",entry.getKey().getReadableName(), entry.getValue() ,entry.getKey().getValue()));
         }
         // not sure if net worth should include the item values or not
         System.out.print(String.format("Total net worth: %.2f\n", user.getBalance()));
