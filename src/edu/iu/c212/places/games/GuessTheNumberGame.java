@@ -102,6 +102,6 @@ public class GuessTheNumberGame extends Game{
 
     @Override
     public String toString() {
-        return "Guess The Number Game";
+        return String.format("Guess The Number (Cost: $%.2f). Game? yes",entryFee);
     }
 }

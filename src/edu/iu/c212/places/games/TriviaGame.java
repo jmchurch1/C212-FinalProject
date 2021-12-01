@@ -27,6 +27,6 @@ public class TriviaGame extends Game{
 
     @Override
     public String toString() {
-        return "Trivia Game";
+        return String.format("Trivia (Cost: $%.2f). Game? yes",entryFee);
     }
 }

@@ -27,6 +27,6 @@ public class BlackjackGame extends Game {
 
     @Override
     public String toString() {
-        return "Blackjack Game";
+        return String.format("Blackjack (Cost: $%.2f). Game? yes",entryFee);
     }
 }

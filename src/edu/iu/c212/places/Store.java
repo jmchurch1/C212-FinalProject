@@ -125,7 +125,7 @@ public class Store extends Place{
 
     @Override
     public String toString() {
-        return "Store";
+        return String.format("Store (Cost: $%.2f). Game? no",entryFee);
     }
 
     enum StoreAction {

@@ -62,6 +62,6 @@ public class Inventory extends Place{
 
     @Override
     public String toString() {
-        return "Inventory";
+        return String.format("Inventory (Cost: $%.2f). Game? no",entryFee);
     }
 }

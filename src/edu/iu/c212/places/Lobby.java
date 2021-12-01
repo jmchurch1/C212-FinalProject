@@ -39,6 +39,6 @@ public class Lobby extends Place{
 
     @Override
     public String toString() {
-        return null;
+        return String.format("Lobby (Cost: $%.2f). Game? no",entryFee);
     }
 }

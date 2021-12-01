@@ -29,7 +29,7 @@ public class HangmanGame extends Game implements IHangmanGame{
 
     @Override
     public String toString(){
-        return "Hangman Game";
+        return String.format("Hangman (Cost: $%.2f). Game? yes",entryFee);
     }
 
 }
