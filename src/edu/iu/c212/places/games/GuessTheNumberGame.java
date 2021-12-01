@@ -2,6 +2,7 @@ package edu.iu.c212.places.games;
 
 import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
+import edu.iu.c212.utils.ConsoleUtils;
 import edu.iu.c212.utils.FileUtils;
 
 import java.io.IOException;
@@ -18,6 +19,8 @@ public class GuessTheNumberGame extends Game{
     private int tries;
     private boolean guessed;
     private int randomNumber;
+    private int upperBound;
+    private int lowerBound;
 
     public GuessTheNumberGame(double entryFee, double reward, Arcade arcade){
         this.arcade = arcade;
@@ -27,6 +30,8 @@ public class GuessTheNumberGame extends Game{
         tries = 5;
         guessed = false;
         randomNumber = 0;
+        upperBound = 2500;
+        lowerBound = 0;
     }
 
     @Override
@@ -44,30 +49,26 @@ public class GuessTheNumberGame extends Game{
         }
 
         Random rd = new Random();
-        Scanner sc = new Scanner(System.in);
         // reset/set all the values
         tries = 5;
         guessed = false;
         randomNumber = rd.nextInt(2501);
         int guessedNumber;
+
         System.out.printf("Welcome %s! You have %d tries to guess a random number between 0 and 2500 (both ends inclusive)\n",user.getUsername(), tries);
         while (!guessed && tries > 0){
-            // rather than this while (true) loop I need to use ConsoleUtils.readIntegerLineFromConsoleOrElseComplainAndRetry(Function<Integer, Boolean> condition, String failureMessage)
-            // but I don't know how Function<Integer, Boolean> works
-            while (true) {
-                System.out.println("Please guess an integer between 0 and 2500 !!!");
-                if (sc.hasNextInt()) {
-                    guessedNumber = sc.nextInt();
-                    if (guessedNumber < 0 || guessedNumber > 2500) {
-                        System.out.println("Make sure the integer is between 0 and 2500 inclusive");
-                    } else {
-                        break;
-                    }
-                } else {
-                    sc.next();
-                    System.out.println("Please input an integer");
+            Function condition = (Object num) -> {
+                if ((int) num < lowerBound || (int) num > upperBound){
+                    return false;
                 }
-            }
+                else
+                {
+                    return true;
+                }
+            };
+            String failureMessage = String.format("Your guess was not between %d and %d",lowerBound,upperBound);
+            guessedNumber = ConsoleUtils.readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
+
             if (guessedNumber > randomNumber){
                 tries--;
                 System.out.printf("Your guess was larger than the random number, you have %d tries remaining.\n", tries);
