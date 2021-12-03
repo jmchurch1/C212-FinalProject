@@ -31,7 +31,7 @@ public class TriviaGame extends Game{
             System.out.println(("=").repeat(10));
             System.out.println(("You're on question "+ (i +1) + ". Ready?"));
             try {
-                Thread.sleep(100000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
