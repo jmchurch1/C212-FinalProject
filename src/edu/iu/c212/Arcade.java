@@ -48,7 +48,11 @@ public class Arcade implements IArcade{
     public void transitionArcadeState(String newPlaceNameToGoTo) throws IOException{
         for (Place place : allPlaces){
             if (place.getPlaceName().equals(newPlaceNameToGoTo)){
-                place.onEnter(currentUser);
+                try {
+                    place.onEnter(currentUser);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 break;
             }
         }

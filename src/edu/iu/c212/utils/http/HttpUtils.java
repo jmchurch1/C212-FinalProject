@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 public class HttpUtils {
     private static final Gson gson = new Gson();
+    public static Object getTriviaQuestions;
 
     public static String getRandomHangmanWord() throws IOException {
         try {
