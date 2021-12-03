@@ -6,6 +6,7 @@ import edu.iu.c212.places.Place;
 import edu.iu.c212.places.games.Game;
 
 import java.io.IOException;
+import java.util.List;
 
 public class HangmanGame extends Game implements IHangmanGame{
 
@@ -32,4 +33,13 @@ public class HangmanGame extends Game implements IHangmanGame{
         return String.format("Hangman (Cost: $%.2f). Game? yes",entryFee);
     }
 
+    @Override
+    public String getBlurredWord(List<Character> guesses, String word) {
+        return null;
+    }
+
+    @Override
+    public List<Character> getValidLexicon() {
+        return null;
+    }
 }

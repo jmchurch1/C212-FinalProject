@@ -21,26 +21,28 @@ public class ConsoleUtils {
     // function type
     // (int arg, bool a) ->
     public static int readIntegerLineFromConsoleOrElseComplainAndRetry(Function<Integer, Boolean> condition, String failureMessage) {
-        while (true) {
-            // check if the userInput is an Integer
-            if (scanner.hasNextInt()) {
-                String userInput = readLineFromConsole();
-                int num = Integer.parseInt(userInput);
-                boolean a = condition.apply(num);
-                if (a){
-                    return num;
-                }
-                else{
-                    System.out.println(failureMessage);
-                }
+
+        // check if the userInput is an Integer
+        if (scanner.hasNextInt()) {
+            String userInput = readLineFromConsole();
+            int num = Integer.parseInt(userInput);
+            boolean a = condition.apply(num);
+            if (a){
+                return num;
             }
-            else {
-                // get rid of the current input
-                readLineFromConsole();
-                // print a message prompting user to input an Integer
-                System.out.println("Please make sure that you are inputting an integer.");
+            else{
+                System.out.println(failureMessage);
+                return readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
             }
         }
+        else {
+            // get rid of the current input
+            readLineFromConsole();
+            // print a message prompting user to input an Integer
+            System.out.println("Please make sure that you are inputting an integer.");
+            return readIntegerLineFromConsoleOrElseComplainAndRetry(condition, failureMessage);
+        }
+
     }
 
     /**
