@@ -65,9 +65,6 @@ public class FileUtils {
             if (username.contains("_")){
                 username = username.substring(0, username.indexOf("_") - 1) + " " + username.substring(username.indexOf("_") + 1, username.length() - 1);
             }
-            for (String a : userParts){
-                System.out.println(a);
-            }
             double userBalance = Double.parseDouble(userParts[1]);
             List<Item> userItems = new ArrayList<>();
             if (userParts.length == 3){
