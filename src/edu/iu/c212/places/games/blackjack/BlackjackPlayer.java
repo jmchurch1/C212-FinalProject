@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public abstract class BlackjackPlayer extends BlackjackParticipant{
+public class BlackjackPlayer extends BlackjackParticipant{
     private static JLabel totalLabels;
     private static JButton hit;
     private static JButton stay;
@@ -67,39 +67,33 @@ public abstract class BlackjackPlayer extends BlackjackParticipant{
 
 
         }};
-        this.cards = deck;
+        super.cards = deck;
+        System.out.println(this.cards);
         this.handTotals = new int[] {0,0};
         this.hit();
         this.hit();
+        System.out.println(handTotals);
 
 
     }
     public String getCurrentTotalsString(){
         if (handTotals[0] > handTotals[1] || handTotals[0] < handTotals[1]){
-            if (handTotals[0] >= 21 &&handTotals[1] >= 21){
-                return("Player: " + handTotals[0] + "\n" + "Dealer: " + handTotals[1]);
+            if (handTotals[0] <= 21){
+                return("Total(s): " + handTotals[1] + " | " + handTotals[0]);
             }
         }
+        return  ("Total(s): " + handTotals[0]);
 
-        return "Game Over";
 
     }
-
+    @Override
      public int getBestTotal(){
-         int total1 = 0;
-         int total2 = 0;
-         for (var i = 0; i < this.playerHand.size(); i++){
-             total1 +=  this.playerHand.get(i).getValue()[0];
-         }
-         for (var i = 0; i < this.playerHand.size(); i++){
-             total2 +=  this.playerHand.get(i).getValue()[1];
-         }
          //gets the total for the primary and secondary values
-         if (total1 > 21){
-             return total1;
+         if (this.handTotals[0] <= 21){
+             return this.handTotals[0];
          }
          else{
-             return total2;
+             return this.handTotals[1];
          }
      }
 }
