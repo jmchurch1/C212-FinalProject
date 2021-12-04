@@ -3,17 +3,19 @@ package edu.iu.c212.places.games.blackjack;
 public class BlackjackDealer extends BlackjackParticipant{
     private BlackjackCard shownCard;
     private int dealerBest;
+    private BlackjackPlayer player;
 
-    public BlackjackDealer(){
+    public BlackjackDealer(BlackjackPlayer player){
         this.handTotals = new int[] {0,0};
         dealerBest = -1;
+        this.player = player;
         hit();
         hit();
     }
 
     @Override
     public void hit(){
-        BlackjackCard cardDrawn = (super.cards.remove((int)Math.floor(Math.random() * super.cards.size())));
+        BlackjackCard cardDrawn = (player.cards.remove((int)Math.floor(Math.random() * player.cards.size())));
         if (handTotals[0] == 0){
             this.shownCard = cardDrawn;
         }

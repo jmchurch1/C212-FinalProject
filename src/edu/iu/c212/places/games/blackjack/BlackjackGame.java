@@ -29,12 +29,12 @@ public class BlackjackGame extends Game {
     @Override
     public void onEnter(User user) throws IOException {
         player = new BlackjackPlayer();
-        dealer = new BlackjackDealer();
+        dealer = new BlackjackDealer(player);
         JFrame blackjackFrame = new JFrame("Blackjack");
         JPanel mainPanel = new JPanel();
         JPanel statusPanel = new JPanel();
-        statusPanel.add(totalLabels);
-        JLabel dealerLabel = new JLabel(dealer.getPartialHand());
+        statusPanel.add(this.totalLabels);
+        JLabel dealerLabel = new JLabel(this.dealer.getPartialHand());
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.add(hit);
         buttonsPanel.add(stay);

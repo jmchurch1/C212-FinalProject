@@ -5,9 +5,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class BlackjackPlayer extends BlackjackParticipant{
-    private static JLabel totalLabels;
-    private static JButton hit;
-    private static JButton stay;
+
     public BlackjackPlayer(){
         ArrayList<BlackjackCard> deck = new ArrayList() {{
             add(new BlackjackCard("Ace of Spades", new int[]{11,1}));
@@ -62,13 +60,8 @@ public class BlackjackPlayer extends BlackjackParticipant{
             add(new BlackjackCard("4 of Diamonds", new int[]{4,4}));
             add(new BlackjackCard("3 of Diamonds", new int[]{3,3}));
             add(new BlackjackCard("2 of Diamonds", new int[]{2,2}));
-
-
-
-
         }};
-        super.cards = deck;
-        System.out.println(this.cards);
+        this.cards = deck;
         this.handTotals = new int[] {0,0};
         this.hit();
         this.hit();
