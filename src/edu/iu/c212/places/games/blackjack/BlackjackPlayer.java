@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class BlackjackPlayer extends BlackjackParticipant{
 
     public BlackjackPlayer(){
+        //Creates a deck of 52 cards
         ArrayList<BlackjackCard> deck = new ArrayList() {{
             add(new BlackjackCard("Ace of Spades", new int[]{11,1}));
             add(new BlackjackCard("King of Spades", new int[]{10,10}));
@@ -61,19 +62,20 @@ public class BlackjackPlayer extends BlackjackParticipant{
             add(new BlackjackCard("3 of Diamonds", new int[]{3,3}));
             add(new BlackjackCard("2 of Diamonds", new int[]{2,2}));
         }};
+        //assigns deck to super class variable cards
         this.cards = deck;
         this.handTotals = new int[] {0,0};
         this.hit();
         this.hit();
-        System.out.println(handTotals);
 
 
     }
     public String getCurrentTotalsString(){
-        if (handTotals[0] > handTotals[1] || handTotals[0] < handTotals[1]){
+        if (handTotals[0] != handTotals[1]){
             if (handTotals[0] <= 21){
                 return("Total(s): " + handTotals[1] + " | " + handTotals[0]);
             }
+            return ("Total(s): " + handTotals[1]);
         }
         return  ("Total(s): " + handTotals[0]);
 

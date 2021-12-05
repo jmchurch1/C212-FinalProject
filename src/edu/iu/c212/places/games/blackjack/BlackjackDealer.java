@@ -11,6 +11,7 @@ public class BlackjackDealer extends BlackjackParticipant{
         this.player = player;
         hit();
         hit();
+
     }
 
     @Override
@@ -31,7 +32,7 @@ public class BlackjackDealer extends BlackjackParticipant{
                 this.dealerBest = -1;
                 break;
             }
-            else if (handTotals[0] > 16){
+            if (handTotals[0] > 16 && handTotals[0] <= 21){
                 this.dealerBest = handTotals[0];
                 break;
             }

@@ -26,6 +26,7 @@ public class TriviaGame extends Game{
         System.out.printf("%s, welcome to the trivia game!", user.getUsername());
         Scanner s = new Scanner(System.in);
         List<TriviaQuestion> Questions = HttpUtils.getTriviaQuestions(5);
+        int correctlyAns = 0;
         for (var i = 0; i < 5; i++){
 
             System.out.println(("=").repeat(10));
@@ -50,12 +51,19 @@ public class TriviaGame extends Game{
             int userGuess = s.nextInt();
             if (userGuess == correctAnswer + 1){
                 System.out.println("You got it right! You earned $2\n");
+                correctlyAns += 1;
                 user.setBalance(user.getBalance() + 2);
                 FileUtils.writeUserDataToFile(arcade.getAllUsers());
             }
             else{
                 System.out.println("You got it wrong. The correct answer is "+ Questions.get(i).getCorrectAnswer());
             }
+        }
+        if (correctlyAns < 3){
+            System.out.println("Aww, good try. You got "+ correctlyAns +" questions right.");
+        }
+        else {
+            System.out.println("“Nice! You got "+ correctlyAns +" questions right.");
         }
         arcade.transitionArcadeState("Lobby");
     }
