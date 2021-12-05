@@ -16,6 +16,7 @@ public class BlackjackDealer extends BlackjackParticipant{
 
     @Override
     public void hit(){
+        // stores the first card into card drawn so the player can see it.
         BlackjackCard cardDrawn = (player.cards.remove((int)Math.floor(Math.random() * player.cards.size())));
         if (handTotals[0] == 0){
             this.shownCard = cardDrawn;
@@ -28,6 +29,7 @@ public class BlackjackDealer extends BlackjackParticipant{
     }
     public void play(){
         while (true){
+            //returns -1 if the dealer bust
             if (handTotals[1] > 21){
                 this.dealerBest = -1;
                 break;

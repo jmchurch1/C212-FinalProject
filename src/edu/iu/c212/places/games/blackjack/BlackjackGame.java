@@ -24,6 +24,7 @@ public class BlackjackGame extends Game {
     private static BlackjackDealer dealer;
     private static Object lock;
     private static Thread t;
+    // booleans marking if the game is over, if the player won, or if it is a tie
     private static Boolean gameOver;
     private static Boolean win;
     private static Boolean tie;
@@ -94,6 +95,7 @@ public class BlackjackGame extends Game {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        //after the window is closed and a window is decided, money is paid out.
         if (win == true){
             System.out.println("Congrats won $50.00");
             user.setBalance(user.getBalance() + 50.00);
@@ -106,7 +108,7 @@ public class BlackjackGame extends Game {
         }
     static class HitButtonListener implements ActionListener{
 
-
+        // hit button draws another card for the player and calculated their score. If the bust they can't draw any more cards and lose instantly.
         @Override
         public void actionPerformed(ActionEvent e) {
             player.hit();
@@ -124,7 +126,7 @@ public class BlackjackGame extends Game {
         }
     }
     static class StayButtonListener implements ActionListener {
-
+        //When stay is pressed both buttons are disabled and the player's and dealer's final total is revealed
         @Override
         public void actionPerformed(ActionEvent e) {
             hit.setEnabled(false);
@@ -166,7 +168,7 @@ public class BlackjackGame extends Game {
         public void windowClosing(WindowEvent e) {
 
         }
-
+        //The game only calculates who won after the window is closed.
         @Override
         public void windowClosed(WindowEvent e) {
             if (gameOver == true){

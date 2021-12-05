@@ -26,6 +26,7 @@ public class TriviaGame extends Game{
         System.out.printf("%s, welcome to the trivia game!", user.getUsername());
         Scanner s = new Scanner(System.in);
         List<TriviaQuestion> Questions = HttpUtils.getTriviaQuestions(5);
+        //stores how many correct answers the player got
         int correctlyAns = 0;
         for (var i = 0; i < 5; i++){
 
@@ -37,6 +38,7 @@ public class TriviaGame extends Game{
                 e.printStackTrace();
             }
             System.out.println(Questions.get(i).getQuestion());
+            //randomizes where the correct answer will be.
             int correctAnswer = (int) Math.floor(Math.random()*4);
             int count = 0;
             for (var n = 0; n < 4; n++){
@@ -48,6 +50,7 @@ public class TriviaGame extends Game{
                     count = count + 1;
                 }
             }
+
             int userGuess = s.nextInt();
             if (userGuess == correctAnswer + 1){
                 System.out.println("You got it right! You earned $2\n");
