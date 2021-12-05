@@ -51,7 +51,22 @@ public class TriviaGame extends Game{
                 }
             }
 
-            int userGuess = s.nextInt();
+            int userGuess;
+            while (true) {
+                if (s.hasNextInt()) {
+                    userGuess = s.nextInt();
+                    if (userGuess < 0 || userGuess > 4){
+                        System.out.println("Please guess a number between 0 and 4 (inclusive)");
+                        continue;
+                    }
+                    break;
+                }
+                else
+                {
+                    System.out.println("please enter an integer");
+                    s.nextLine();
+                }
+            }
             if (userGuess == correctAnswer + 1){
                 System.out.println("You got it right! You earned $2\n");
                 correctlyAns += 1;
