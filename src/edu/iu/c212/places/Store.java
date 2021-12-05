@@ -80,11 +80,11 @@ public class Store extends Place{
                     break;
 
                 case SELL:
+                    if (user.getInventory().size() == 0){
+                        System.out.println("Make sure you have items in your inventory before you try and sell.");
+                        break;
+                    }
                     while (true){
-                        if (user.getInventory() == null){
-                            System.out.println("Make sure you have items in your inventory before you try and sell.");
-                            break;
-                        }
                         System.out.println("WARNING: If you decide to sell anything you will only get 50% of the item's value back.");
                         List<Item> userItems = user.getInventory();
                         Item sellItem = ConsoleUtils.printMenuToConsole("Sell Menu", userItems, true);

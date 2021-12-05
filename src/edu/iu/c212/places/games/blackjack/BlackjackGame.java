@@ -99,10 +99,14 @@ public class BlackjackGame extends Game {
         if (win == true){
             System.out.println("Congrats won $50.00");
             user.setBalance(user.getBalance() + 50.00);
+            // saving the new information to the file
+            FileUtils.writeUserDataToFile(arcade.getAllUsers());
         }
         else if(tie == true){
             System.out.println("Since it was a tie. Money will be refunded.");
             user.setBalance(user.getBalance() + entryFee);
+            // saving the new information to the file
+            FileUtils.writeUserDataToFile(arcade.getAllUsers());
         }
         arcade.transitionArcadeState("Lobby");
         }
@@ -136,11 +140,12 @@ public class BlackjackGame extends Game {
                 if (dealer.getBestTotal() == -1){
                     totalLabels.setText("You: " + player.getBestTotal() + " | Dealer: Busted"+ " You Win!");
                     dealerLabel.setText("");
-
-
                 }
-                totalLabels.setText("You: " + player.getBestTotal() + " | Dealer: " + dealer.getBestTotal()+ " You Win!");
-                dealerLabel.setText("");
+                else
+                {
+                    totalLabels.setText("You: " + player.getBestTotal() + " | Dealer: " + dealer.getBestTotal() + " You Win!");
+                    dealerLabel.setText("");
+                }
 
             }
             else if (player.getBestTotal() < dealer.getBestTotal()){
