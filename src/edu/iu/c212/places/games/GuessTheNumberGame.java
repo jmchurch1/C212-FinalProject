@@ -52,10 +52,10 @@ public class GuessTheNumberGame extends Game{
         // reset/set all the values
         tries = 5;
         guessed = false;
-        randomNumber = rd.nextInt(2501);
+        randomNumber = rd.nextInt(upperBound + 1);
         int guessedNumber;
 
-        System.out.printf("Welcome %s! You have %d tries to guess a random number between 0 and 2500 (both ends inclusive)\n",user.getUsername(), tries);
+        System.out.printf("Welcome %s! You have %d tries to guess a random number between %d and %d (both ends inclusive)\n",user.getUsername(), tries, lowerBound, upperBound);
         while (!guessed && tries > 0){
             Function condition = (Object num) -> {
                 if ((int) num < lowerBound || (int) num > upperBound){
@@ -78,7 +78,8 @@ public class GuessTheNumberGame extends Game{
             } else {
                 tries--;
                 guessed = true;
-                System.out.printf("You guessed the number with %d tries remaining! You earned $%f.\n",tries,reward);
+                System.out.printf("You guessed the number with %d tries remaining! You earned $%.2f.\n",tries,reward);
+                break;
             }
         }
 
