@@ -23,6 +23,8 @@ public class User {
 
     // setters
     public void setBalance(double balance) {
+        String twoDecimalPointBalance = String.format("%.2f",balance);
+        balance = Double.parseDouble(twoDecimalPointBalance);
         this.balance = balance;
     }
 

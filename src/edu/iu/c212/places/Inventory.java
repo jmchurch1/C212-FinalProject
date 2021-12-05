@@ -46,8 +46,12 @@ public class Inventory extends Place{
         for (Map.Entry<Item, Integer> entry : itemHashMap.entrySet()) {
             System.out.print(String.format("Name: %s, Amount: %d (value: $%.2f)\n",entry.getKey().getReadableName(), entry.getValue() ,entry.getKey().getValue()));
         }
-        // not sure if net worth should include the item values or not
-        System.out.print(String.format("Total net worth: %.2f\n", user.getBalance()));
+        // adam said that the net worth of the user was the value of all the user's items + the user's balance
+        float itemPreSaleValues = 0;
+        for (int i = 0; i < user.getInventory().size(); i++){
+            itemPreSaleValues += user.getInventory().get(i).getValue();
+        }
+        System.out.print(String.format("Total net worth: %.2f\n", user.getBalance() + itemPreSaleValues));
         if (user.getInventory().size() == 3){
             System.out.println("WARNING: Your inventory is full, you will not be able to buy any more items before you sell one");
         }
